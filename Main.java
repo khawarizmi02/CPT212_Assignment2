@@ -19,14 +19,14 @@ public class Main {
 
         // Find a path from source to destination using DFS
         DFS dfs = new DFS();
-        List<Integer> path = dfs.findPathDFS(graph, 0, 5);
-        System.out.println("Path: " + path);
+            List<Integer> allPaths = dfs.findPathDFS(graph, 0, 5);
 
-        // Print the path
-        if (path != null) {
-            System.out.println("Path from source to destination: " + path);
-        } else {
-            System.out.println("No path from source to destination");
-        }
+        System.out.println("All possible paths from 0 to 5:");
+        System.out.println(allPaths);
+
+        // DFS2 dfs2 = new DFS2();
+        // List<Integer> path = dfs2.findPathDFS(graph, 0, 5);
+
+        // System.out.println(path);
     }
 }

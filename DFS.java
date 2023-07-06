@@ -1,48 +1,36 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 class DFS {
-    private int[] num;
-    private List<Integer> edges;
-    private int count;
-    private int source;
-    private int destination;
-
     public List<Integer> findPathDFS(Graph graph, int source, int destination) {
-        this.source = source;
-        this.destination = destination;
-        int numVertices = graph.getNumVertices();
-        num = new int[numVertices];
-        edges = new ArrayList<>();
-        count = 0;
-
-        for (int i = 0; i < numVertices; i++) {
-            num[i] = 0;
-        }
-
-        edges.add(source);
-        DFSUtil(graph, source, destination);
-
-        System.out.println(graph.getAdjacencyList().get(source));
-        // System.out.println("edges: " + edges);
-
-        if (destination == destination) {
-          return edges;
-        } else {
-          return null;
-        }   
+        List<Integer> path = new ArrayList<>();
+        boolean[] visited = new boolean[graph.getNumVertices()];
+        Stack<Integer> pathStack = new Stack<>();
+        pathStack.push(source);
+        DFS(graph, source, destination, visited, pathStack, path);
+        return path;
     }
 
-    private void DFSUtil(Graph graph, int vertex, int destination) {
-        num[vertex] = count++;
-        for (int neighbor : graph.getAdjacencyList().get(vertex)) {
-            if (num[neighbor] == 0 && vertex != destination) {
-                edges.add(neighbor);
-                DFSUtil(graph, neighbor, destination);
-                if (edges.get(edges.size() - 1) != destination) {
-                  edges.remove(edges.size() - 1);
+    private boolean DFS(Graph graph, int currentVertex, int destination, boolean[] visited,
+                                Stack<Integer> pathStack, List<Integer> path) {
+        visited[currentVertex] = true;
+        if (currentVertex == destination) {
+            path.addAll(pathStack);
+            return true;
+        } else {
+            for (int neighbor : graph.getAdjacencyList().get(currentVertex)) {
+                if (!visited[neighbor]) {
+                    pathStack.push(neighbor);
+                    if (DFS(graph, neighbor, destination, visited, pathStack, path)) {
+                        return true;
+                    }
+                    pathStack.pop();
                 }
             }
         }
+        visited[currentVertex] = false;
+        return false;
     }
 }
+
