@@ -8,24 +8,28 @@ class DFS {
         boolean[] visited = new boolean[graph.getNumVertices()];
         Stack<Integer> pathStack = new Stack<>();
         pathStack.push(source);
-        DFS(graph, source, destination, visited, pathStack, path);
+        boolean pathFound = performDFS(graph, source, destination, visited, pathStack, path);
+        if (!pathFound) {
+            System.out.println("No path found from source to destination.");
+        }
         return path;
     }
 
-    private boolean DFS(Graph graph, int currentVertex, int destination, boolean[] visited,
-                                Stack<Integer> pathStack, List<Integer> path) {
+    private boolean performDFS(Graph graph, int currentVertex, int destination, boolean[] visited,
+                               Stack<Integer> pathStack, List<Integer> path) {
         visited[currentVertex] = true;
         if (currentVertex == destination) {
             path.addAll(pathStack);
             return true;
         } else {
-            for (int neighbor : graph.getAdjacencyList().get(currentVertex)) {
+            for (Edge edge : graph.getAdjacencyList().get(currentVertex)) {
+                int neighbor = edge.getDestination();
                 if (!visited[neighbor]) {
-                    pathStack.push(neighbor);
-                    if (DFS(graph, neighbor, destination, visited, pathStack, path)) {
+                    pathStack.push(neighbor); // Add the neighbor to the current path
+                    if (performDFS(graph, neighbor, destination, visited, pathStack, path)) {
                         return true;
                     }
-                    pathStack.pop();
+                    pathStack.pop(); // Remove the neighbor from the current path
                 }
             }
         }
