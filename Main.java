@@ -20,6 +20,10 @@ public class Main {
 
         // Bus Object declaration
         Bus busA = new Bus("RouteA.txt");
+        Bus busAC = new Bus("RouteAC.txt");
+        Bus busB = new Bus("RouteB.txt");
+        Bus busC = new Bus("RouteC.txt");
+        Bus busD = new Bus("RouteD.txt");
 
         // Get user input for source and destination vertices
         Scanner scanner = new Scanner(System.in);
@@ -30,8 +34,6 @@ public class Main {
         scanner.close();
 
         // compare bus route with source and destination
-        boolean result = busA.isAvailable( source, destination );
-        System.out.println(result);
         System.out.print("\033[H\033[2J");
         System.out.flush();
 
@@ -43,6 +45,23 @@ public class Main {
         System.out.println("Path from " + source + " to " + destination + ":");
         if (!path.isEmpty()) {
           setPath(path, Stations);
+        }
+
+        System.out.println("Available Bus Route: ");
+        if (busA.isAvailable(source, destination)){
+          busA.printBusRoute(Stations);
+        }
+        if (busAC.isAvailable(source, destination)){
+          busAC.printBusRoute(Stations);
+        }
+        if (busB.isAvailable(source, destination)){
+          busB.printBusRoute(Stations);
+        }
+        if (busC.isAvailable(source, destination)){
+          busC.printBusRoute(Stations);
+        }
+        if (busD.isAvailable(source, destination)){
+          busD.printBusRoute(Stations);
         }
     }
 
