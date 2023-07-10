@@ -18,6 +18,9 @@ public class Main {
         // print out Stations list
         printStationsList(Stations);
 
+        // Bus Object declaration
+        Bus busA = new Bus("RouteA.txt");
+
         // Get user input for source and destination vertices
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the source vertex: ");
@@ -25,6 +28,12 @@ public class Main {
         System.out.print("Enter the destination vertex: ");
         int destination = scanner.nextInt();
         scanner.close();
+
+        // compare bus route with source and destination
+        boolean result = busA.isAvailable( source, destination );
+        System.out.println(result);
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
 
         // Find the path using DFS
         DFS dfs = new DFS();
