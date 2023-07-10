@@ -5,16 +5,10 @@ import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Scanner; // Import the Scanner class to read text files
 
 public class Bus {
-  private int time; // format time: 1200
+  // variable declaration for bus class
   private String name;
   private int startPoint;
   private int [] stationsNum;
-
-  // public Bus(int time, int startPoint, int []stations){
-  //   this.time = time;
-  //   this.startPoint = startPoint;
-  //   this.stationsNum = stations;
-  // } 
 
   public Bus(String fileName){
     try {
@@ -24,6 +18,7 @@ public class Bus {
       int num = Integer.parseInt(myReader.nextLine());
       stationsNum = new int[num];
       for (int i = 0; i < num; i++) {
+        // store all bus stop that read from the file
         stationsNum[i] = Integer.parseInt(myReader.nextLine());
       }
       myReader.close();

@@ -17,9 +17,9 @@ class DFS {
 
     private boolean performDFS(Graph graph, int currentVertex, int destination, boolean[] visited,
                                Stack<Integer> pathStack, List<Integer> path) {
-        visited[currentVertex] = true;
+        visited[currentVertex] = true; // check the vertex ihas been visited 
         if (currentVertex == destination) {
-            path.addAll(pathStack);
+            path.addAll(pathStack); // add all path 
             return true;
         } else {
             for (Edge edge : graph.getAdjacencyList().get(currentVertex)) {

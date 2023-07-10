@@ -6,6 +6,7 @@ import java.io.File;
 
 class Graph {
     private int numVertices;
+    // use 2D linked list
     private List<List<Edge>> adjacencyList;
 
     public Graph(int numVertices) {

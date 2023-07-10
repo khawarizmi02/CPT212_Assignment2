@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         // Create a graph from the input file
-        Graph graph = createGraphFromFile("data.txt");
+        Graph graph = createGraphFromFile("data/data.txt");
 
         // Completely execute program if there is no graph
         if (graph == null){ return; }
@@ -19,11 +19,11 @@ public class Main {
         printStationsList(Stations);
 
         // Bus Object declaration
-        Bus busA = new Bus("RouteA.txt");
-        Bus busAC = new Bus("RouteAC.txt");
-        Bus busB = new Bus("RouteB.txt");
-        Bus busC = new Bus("RouteC.txt");
-        Bus busD = new Bus("RouteD.txt");
+        Bus busA = new Bus("data/RouteA.txt");
+        Bus busAC = new Bus("data/RouteAC.txt");
+        Bus busB = new Bus("data/RouteB.txt");
+        Bus busC = new Bus("data/RouteC.txt");
+        Bus busD = new Bus("data/RouteD.txt");
 
         // Get user input for source and destination vertices
         Scanner scanner = new Scanner(System.in);
@@ -108,7 +108,7 @@ public class Main {
   private static void setPath(List<Integer> path, String[] Stations){
     for (int  i = 0; i < path.size(); i++) {
       System.out.print(Stations[path.get(i)]);
-      if(i < path.size() - 1) System.out.print(" ->> ");
+      if(i < path.size() - 1) System.out.print(" -> ");
     }
     System.out.println();
   }
@@ -117,7 +117,7 @@ public class Main {
     String[] stations = new String[numVertices];
 
     try {
-        File file = new File("Stations.txt");
+        File file = new File("data/Stations.txt");
         Scanner scanner = new Scanner(file);
 
         for (int i = 0; i < numVertices; i++) {
